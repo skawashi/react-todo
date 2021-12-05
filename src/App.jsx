@@ -31,7 +31,7 @@ export const App = () => {
   return (
     <>
       <div className="background">
-        <h1 className="title">ToDo List</h1>
+        <h1 className="title">Todo List</h1>
         <AddTask
           todoText={todoText}
           onChange={onChangeTodoText}
