@@ -10,7 +10,6 @@ export const App = () => {
   const [keyWord, setKeyWord] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState(["task1", "task2"]);
   const [searchTodos, setSearchTodos] = useState(["検索機能は未実装です"]);
-  const [displayTodos, setDisplayTodos] = useState();
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
   const pressEnter = (event) => {
@@ -22,16 +21,6 @@ export const App = () => {
   };
   const onChangeKeyWord = (event) => {
     setKeyWord(event.target.value);
-    // if (keyWord === "") {
-    //   setDisplayTodos(incompleteTodos);
-    // } else {
-    //   const newTodos = [];
-    //   for (let i = 0; i < incompleteTodos.length; i++) {
-    //     if (incompleteTodos[i].startsWith(keyWord))
-    //       newTodos.push(incompleteTodos[i]);
-    //   }
-    //   setDisplayTodos(newTodos);
-    // }
   };
   const onClickDelete = (index) => {
     const newTodos = [...incompleteTodos];
