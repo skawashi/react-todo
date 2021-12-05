@@ -1,15 +1,17 @@
 import React from "react";
 
 const SearchWord = (props) => {
-  const { searchWord, onChange } = props;
+  const { keyWord, onChange } = props;
   return (
-    <div>
+    <section className="common-area">
       <input
+        className="keyword-area"
+        type="text"
         placeholder="Search Keyword"
-        value={searchWord}
+        value={keyWord}
         onChange={onChange}
       />
-    </div>
+    </section>
   );
 };
 

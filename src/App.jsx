@@ -7,11 +7,11 @@ import SearchTodos from "./components/SearchTodos";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
-  const [searchWord, setSearchWord] = useState("");
+  const [keyWord, setKeyWord] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState(["task1", "task2"]);
-  const [searchTodos, setSearchTodos] = useState([
-    "検索機能はまだ実装されていません"
-  ]);
+  const [searchTodos, setSearchTodos] = useState(["検索機能は未実装です"]);
+  const [displayTodos, setDisplayTodos] = useState();
+
   const onChangeTodoText = (event) => setTodoText(event.target.value);
   const pressEnter = (event) => {
     if (event.key === "Enter" && todoText !== "") {
@@ -20,16 +20,18 @@ export const App = () => {
       setTodoText("");
     }
   };
-  const onChangeSearchWord = (event) => {
-    setSearchWord(event.target.value);
-    // const newTodos = [];
-    // setSearchTodos(
-    //   incompleteTodos.map((todo) => {
-    //     if (todo.startsWith(searchWord)) newTodos.push(todo);
-    //     return newTodos;
-    //   })
-    // );
-    // console.log(searchTodos);
+  const onChangeKeyWord = (event) => {
+    setKeyWord(event.target.value);
+    // if (keyWord === "") {
+    //   setDisplayTodos(incompleteTodos);
+    // } else {
+    //   const newTodos = [];
+    //   for (let i = 0; i < incompleteTodos.length; i++) {
+    //     if (incompleteTodos[i].startsWith(keyWord))
+    //       newTodos.push(incompleteTodos[i]);
+    //   }
+    //   setDisplayTodos(newTodos);
+    // }
   };
   const onClickDelete = (index) => {
     const newTodos = [...incompleteTodos];
@@ -39,18 +41,20 @@ export const App = () => {
 
   return (
     <>
-      <h1>ToDo List</h1>
-      <AddTask
-        todoText={todoText}
-        onChange={onChangeTodoText}
-        pressEnter={pressEnter}
-      />
-      <SearchWord searchWord={searchWord} onChange={onChangeSearchWord} />
-      {searchWord === "" ? (
-        <IncompleteTodos todos={incompleteTodos} onClick={onClickDelete} />
-      ) : (
-        <SearchTodos todos={searchTodos} />
-      )}
+      <div className="background">
+        <h1 className="title">ToDo List</h1>
+        <AddTask
+          todoText={todoText}
+          onChange={onChangeTodoText}
+          pressEnter={pressEnter}
+        />
+        <SearchWord keyWord={keyWord} onChange={onChangeKeyWord} />
+        {keyWord === "" ? (
+          <IncompleteTodos todos={incompleteTodos} onClick={onClickDelete} />
+        ) : (
+          <SearchTodos todos={searchTodos} onClick={onClickDelete} />
+        )}
+      </div>
     </>
   );
 };
